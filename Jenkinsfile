@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE = "ApoorvaKharya/scientific-calculator"
+        DOCKER_IMAGE = "apoorvakharya/scientific-calculator"
     }
 
     stages {
