@@ -1,0 +1,11 @@
+---
+- name: Deploy Scientific Calculator Container
+  hosts: local
+  
+  tasks:
+    - name: Run container
+      docker_container:
+        name: calculator-container
+        image: apoorvakharya/scientific-calculator:latest
+        state: started
+        recreate: yes
