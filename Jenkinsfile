@@ -40,6 +40,25 @@ pipeline {
                 sh 'docker build -t $DOCKER_IMAGE .'
             }
         }
+        stage('Push Docker Image') {
+                    steps {
+                        withCredentials([usernamePassword(
+                            credentialsId: 'dockerhub-credentials',
+                            usernameVariable: 'DOCKER_USER',
+                            passwordVariable: 'DOCKER_PASS'
+                        )]) {
+
+                            sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+                            sh 'docker push $DOCKER_IMAGE'
+                        }
+                    }
+                }
+        stage('Deploy with Ansible') {
+                    steps {
+                        sh 'ansible-playbook ~/ansible-deploy/deploy.yml -i ~/ansible-deploy/hosts'
+                    }
+                }
+
 
     }
 }
