@@ -71,4 +71,4 @@ public class ScientificCalculator {
         logger.info("[POWER] - " + x + " to " + b);
         return Math.pow(x, b);
     }
-}
+} //comment
